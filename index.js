@@ -5,10 +5,10 @@ var fs 		= require("fs")
 var juice	= require('juice')
 
 var app	= express()
-var bodyParser = require('body-parser')
+// var bodyParser = require('body-parser')
 
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// app.use(bodyParser.json()) // for parsing application/json
+// app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.set('port', (process.env.PORT || 5000))
 
