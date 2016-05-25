@@ -8,8 +8,8 @@ var bodyParser = require('body-parser')
 var app	= express()
 
 
-// app.use(bodyParser.json()) // for parsing application/json
-// app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
 app.set('port', (process.env.PORT || 5000))
 
