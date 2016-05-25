@@ -18,7 +18,7 @@ app.get('/', function(request, response) {
 
 // get the input box
 app.get('/input', function(request, response) {
-	fs.readFile('input.html',function (error, data){
+	fs.readFile('juice/input.html',function (error, data){
 		response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length})
 		response.write(data)
 		response.end()
