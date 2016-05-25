@@ -1,12 +1,10 @@
 // Server config
 var express = require('express');
-var http	= require("http");
-var fs 		= require("fs");
-var juice	= require('juice');
-
-var app	= express();
+var http = require("http");
+var fs 	= require("fs");
+var juice = require('juice');
+var app = express();
 var bodyParser = require('body-parser');
-
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -32,7 +30,7 @@ app.post('/process', function(request, response) {
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g;
 	var match = regEx.exec(url);
-	// console.log(match[1] + " " + match[2]);
+	console.log(match[1] + " " + match[2]);
 	// console.log(match);
 
 	if ( match != null ) {
@@ -88,3 +86,17 @@ app.get('/view', function(request, response) {
 app.listen(app.get('port'), function() {
 	console.log("Node app is running at localhost:" + app.get('port'));
 })
+
+// Juice test
+// var fs 	 = require("fs");
+// var html = fs.readFileSync("juice/index.html").toString('utf8');
+// var css  = fs.readFileSync("juice/style.css").toString('utf8');
+
+// // console.log(html);
+// var juice	= require('juice');
+// var result	= juice.inlineContent(html, css);
+// // console.log(result);
+
+// fs.writeFileSync("juice/rendered.html", result, 'utf8');
+// console.log(result);
+
