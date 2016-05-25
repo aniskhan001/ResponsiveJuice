@@ -8,7 +8,7 @@ app.get('/', function(request, response) {
   response.send('Hello World!')
 })
 
-app.get('juice/', function(request, response) {
+app.get('/juice', function(request, response) {
   response.send('Juice World!')
 })
 
