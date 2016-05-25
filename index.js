@@ -1,7 +1,7 @@
 // Server config
 var express = require('express')
-var http	= require("http")
-var fs 		= require("fs")
+// var http	= require('http')
+var fs 		= require('fs')
 var juice	= require('juice')
 
 var app	= express()
