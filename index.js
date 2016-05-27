@@ -17,18 +17,9 @@ app.get('/', function(request, response) {
 	response.send('Hello World!')
 })
 
-// get the input box
-app.get('/input', function(request, response) {
-	fs.readFile('juice/input.html',function (error, data){
-		response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length})
-		response.write(data)
-		response.end()
-	})
-})
-
-// process the url 
-app.post('/process', function(request, response) {
-	var url = request.body.url
+// get the url
+app.get('/url/*?', function(request, response) {
+	var url = request.params[0]
 
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g
