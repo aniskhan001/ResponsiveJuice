@@ -58,14 +58,13 @@ app.get('/url/*?', function(request, response) {
 			res.on('end' , function() {
 				// Juice Rendering
 				result = juice(html, j_options)
-				fs.writeFileSync("juice/rendered.html", result, 'utf8')
+				// fs.writeFileSync("juice/rendered.html", result, 'utf8')
+				response.send(result)
 			})
 		})
 		req.end()
-
-		response.send('HTML Rendered. <a href="/view">Click to view</a>')
 	} else {
-		response.send('The given URL is not correct! <a href="/input">Try again</a>')
+		response.send('The given URL is not correct! Please try again.')
 	}
 })
 
