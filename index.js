@@ -59,13 +59,15 @@ app.post('/process', function(request, response) {
 
 		var req = http.request(d_options, function(res) {
 			res.setEncoding('utf8')
+			html = ''
 			res.on('data', function (chunk) {
-				html = chunk
+				html += chunk
+			})
 
+			res.on('end' , function() {
 				// Juice Rendering
 				result = juice(html, j_options)
 				fs.writeFileSync("juice/rendered.html", result, 'utf8')
-				// console.log(result)
 			})
 		})
 		req.end()
