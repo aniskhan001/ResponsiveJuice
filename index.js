@@ -1,6 +1,6 @@
 // Server config
 var express = require('express')
-var http	= require('http')
+var https	= require('https')
 var fs 		= require('fs')
 var juice	= require('juice')
 var bodyParser = require('body-parser')
@@ -47,7 +47,7 @@ app.get('/url/*?', function(request, response) {
 			applyAttributesTableElements : true
 		}
 
-		var req = http.request(d_options, function(res) {
+		var req = https.request(d_options, function(res) {
 			res.setEncoding('utf8')
 			html = ''
 			res.on('data', function (chunk) {
