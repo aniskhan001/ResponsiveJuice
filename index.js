@@ -12,7 +12,7 @@ var app	= express()
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
-app.set('port', 5000)
+app.set('port', (process.env.PORT || 5000))
 
 app.get('/', function(request, response) {
 	response.send('Hello World!')
