@@ -51,6 +51,7 @@ app.get('/url/*?', function(request, response) {
 			html = ''
 			res.on('data', function (chunk) {
 				html += chunk
+				console.log("The HTML is: " + html);
 			})
 
 			res.on('end' , function() {
