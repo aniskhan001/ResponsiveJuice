@@ -39,7 +39,7 @@ app.get('/url/*?', function(request, response) {
 			host: match[1],
 			port: 80,
 			path: match[2],
-			method: 'POST'
+			method: 'GET'
 		}
 
 		var j_options = {
@@ -52,29 +52,29 @@ app.get('/url/*?', function(request, response) {
 			applyAttributesTableElements : true
 		}
 
-		// var req = http.request(d_options, function(res) {
-		// 	res.setEncoding('utf8')
-		// 	html = ''
-		// 	res.on('data', function (chunk) {
-		// 		html += chunk
-		// 	})
+		var req = http.request(d_options, function(res) {
+			res.setEncoding('utf8')
+			html = ''
+			res.on('data', function (chunk) {
+				html += chunk
+			})
 
-		// 	res.on('end' , function() {
-		// 		// Juice Rendering
-		// 		result = juice(html, j_options)
-		// 		// fs.writeFileSync("juice/rendered.html", result, 'utf8')
-		// 		response.send(result)
-		// 	})
-		// })
+			res.on('end' , function() {
+				// Juice Rendering
+				result = juice(html, j_options)
+				// fs.writeFileSync("juice/rendered.html", result, 'utf8')
+				response.send(result)
+			})
+		})
 
-		// req.end()
+		req.end()
 
-		request.get( url, function (error, res, body) {
-			response.send(body);
-			if (!error && res.statusCode == 200) {
-				console.log(body)
-			}
-		});
+		// request.get( url, function (error, res, body) {
+		// 	response.send(body);
+		// 	if (!error && res.statusCode == 200) {
+		// 		console.log(body)
+		// 	}
+		// });
 		
 	} else {
 		response.send('The given URL is not correct! Please try again.')
