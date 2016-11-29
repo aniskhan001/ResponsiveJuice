@@ -20,6 +20,7 @@ app.get('/', function(request, response) {
 // get the url
 app.get('/url/*?', function(request, response) {
 	var url = request.params[0]
+	console.log("The URL is: " + url)
 
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g
