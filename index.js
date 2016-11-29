@@ -25,7 +25,10 @@ app.get('/url/*?', function(request, response) {
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g
 	var match = regEx.exec(url)
-	console.log("The match is: " + match);
+	console.log("The matches are\n");
+	for (var i = match.length - 1; i >= 0; i--) {
+		console.log(match[i]);
+	}
 
 	if ( match != null ) {
 		// Download the file
