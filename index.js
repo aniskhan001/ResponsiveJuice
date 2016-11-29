@@ -67,14 +67,15 @@ app.get('/url/*?', function(request, response) {
 		// 	})
 		// })
 
+		// req.end()
+
 		request.post( url, function (error, res, body) {
 			response.send(body);
 			if (!error && res.statusCode == 200) {
 				console.log(body)
 			}
 		});
-
-		req.end()
+		
 	} else {
 		response.send('The given URL is not correct! Please try again.')
 	}
