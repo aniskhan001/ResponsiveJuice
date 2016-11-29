@@ -27,7 +27,7 @@ app.get('/url/*?', function(request, response) {
 	var match = regEx.exec(url)
 	console.log("The matches are\n");
 	for (var i = match.length - 1; i >= 0; i--) {
-		console.log(match[i]);
+		console.log( i + ": " + match[i]);
 	}
 
 	if ( match != null ) {
