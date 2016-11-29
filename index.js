@@ -4,6 +4,7 @@ var http	= require('http')
 var fs 		= require('fs')
 var juice	= require('juice')
 var bodyParser = require('body-parser')
+var request = require('request');
 
 var app	= express()
 
@@ -51,20 +52,28 @@ app.get('/url/*?', function(request, response) {
 			applyAttributesTableElements : true
 		}
 
-		var req = http.request(d_options, function(res) {
-			res.setEncoding('utf8')
-			html = ''
-			res.on('data', function (chunk) {
-				html += chunk
-			})
+		// var req = http.request(d_options, function(res) {
+		// 	res.setEncoding('utf8')
+		// 	html = ''
+		// 	res.on('data', function (chunk) {
+		// 		html += chunk
+		// 	})
 
-			res.on('end' , function() {
-				// Juice Rendering
-				result = juice(html, j_options)
-				// fs.writeFileSync("juice/rendered.html", result, 'utf8')
-				response.send(result)
-			})
-		})
+		// 	res.on('end' , function() {
+		// 		// Juice Rendering
+		// 		result = juice(html, j_options)
+		// 		// fs.writeFileSync("juice/rendered.html", result, 'utf8')
+		// 		response.send(result)
+		// 	})
+		// })
+
+		request.post( url, function (error, res, body) {
+			response.send(body);
+			if (!error && res.statusCode == 200) {
+				console.log(body)
+			}
+		});
+
 		req.end()
 	} else {
 		response.send('The given URL is not correct! Please try again.')
