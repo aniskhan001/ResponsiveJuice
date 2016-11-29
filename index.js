@@ -1,6 +1,6 @@
 // Server config
 var express = require('express')
-var http	= require('http')
+var http	= require('https')
 var fs 		= require('fs')
 var juice	= require('juice')
 var bodyParser = require('body-parser')
