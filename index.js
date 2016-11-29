@@ -21,15 +21,10 @@ app.get('/', function(request, response) {
 // get the url
 app.get('/url/*?', function(request, response) {
 	var url = request.params[0]
-	console.log("The URL is: " + url);
 
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g
 	var match = regEx.exec(url)
-	console.log("The matches are\n");
-	for (var i = match.length-1; i >= 0; i--) {
-		console.log( i + ": " + match[i]);
-	}
 
 	if ( match != null ) {
 		// Download the file
@@ -39,7 +34,7 @@ app.get('/url/*?', function(request, response) {
 			host: match[1],
 			port: 80,
 			path: match[2],
-			method: 'GET'
+			method: 'POST'
 		}
 
 		var j_options = {
@@ -68,13 +63,6 @@ app.get('/url/*?', function(request, response) {
 		})
 
 		req.end()
-
-		// request.get( url, function (error, res, body) {
-		// 	response.send(body);
-		// 	if (!error && res.statusCode == 200) {
-		// 		console.log(body)
-		// 	}
-		// });
 		
 	} else {
 		response.send('The given URL is not correct! Please try again.')
