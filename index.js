@@ -4,7 +4,6 @@ var https	= require('https')
 var fs 		= require('fs')
 var juice	= require('juice')
 var bodyParser = require('body-parser')
-var request = require('request');
 
 var app	= express()
 
