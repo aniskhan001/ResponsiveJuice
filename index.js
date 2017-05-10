@@ -1,6 +1,6 @@
 // Server config
 var express = require('express')
-var http	= require('http')
+var https	= require('https')
 var fs 		= require('fs')
 var juice	= require('juice')
 var bodyParser = require('body-parser')
@@ -20,12 +20,11 @@ app.get('/', function(request, response) {
 // get the url
 app.get('/url/*?', function(request, response) {
 	var url = request.params[0]
+	console.log("The URL is: " + url)
 
 	// Parsing 'host' and 'path'
 	var regEx = /\/\/([^\/]+)(.+)/g
 	var match = regEx.exec(url)
-	// console.log(match[1] + " " + match[2])
-	// console.log(match)
 
 	if ( match != null ) {
 		// Download the file
@@ -33,7 +32,7 @@ app.get('/url/*?', function(request, response) {
 		var result = ''
 		var d_options = {
 			host: match[1],
-			port: 80,
+			port: 443,
 			path: match[2],
 			method: 'POST'
 		}
@@ -48,11 +47,12 @@ app.get('/url/*?', function(request, response) {
 			applyAttributesTableElements : true
 		}
 
-		var req = http.request(d_options, function(res) {
+		var req = https.request(d_options, function(res) {
 			res.setEncoding('utf8')
 			html = ''
 			res.on('data', function (chunk) {
 				html += chunk
+				// console.log("The HTML is: " + html);
 			})
 
 			res.on('end' , function() {
@@ -62,7 +62,9 @@ app.get('/url/*?', function(request, response) {
 				response.send(result)
 			})
 		})
+
 		req.end()
+		
 	} else {
 		response.send('The given URL is not correct! Please try again.')
 	}
