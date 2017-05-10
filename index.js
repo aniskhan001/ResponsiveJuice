@@ -32,7 +32,7 @@ app.get('/url/*?', function(request, response) {
 		var result = ''
 		var d_options = {
 			host: match[1],
-			port: 80,
+			port: 443,
 			path: match[2],
 			method: 'POST'
 		}
