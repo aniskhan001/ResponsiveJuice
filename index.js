@@ -52,13 +52,11 @@ app.get('/url/*?', function(request, response) {
 			html = ''
 			res.on('data', function (chunk) {
 				html += chunk
-				// console.log("The HTML is: " + html);
 			})
 
 			res.on('end' , function() {
 				// Juice Rendering
 				result = juice(html, j_options)
-				// fs.writeFileSync("juice/rendered.html", result, 'utf8')
 				response.send(result)
 			})
 		})
@@ -69,16 +67,6 @@ app.get('/url/*?', function(request, response) {
 		response.send('The given URL is not correct! Please try again.')
 	}
 })
-
-// Show the rendered file
-app.get('/view', function(request, response) {
-	fs.readFile('juice/rendered.html',function (error, data){
-		response.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length})
-		response.write(data)
-		response.end()
-	})
-})
-
 
 app.listen(app.get('port'), function() {
 	console.log("Node app is running at localhost:" + app.get('port'))
